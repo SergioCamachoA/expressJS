@@ -1,0 +1,22 @@
+<%- include ('../partials/head.ejs') %>
+
+<body>
+  <%= //JSON.stringify(tasks) %>
+  <div class="tasks">
+    <% tasks.forEach(task => { %>
+    <div class="userid-container">
+      <div class="userid">
+        <p>user ID</p>
+        <p class='num'><%= task.userid %></p>
+      </div>
+      <p>-</p>
+      <div class="tasks">
+        <p>no. of tasks</p>
+        <p class='num'><%= task['id'] %> </p>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</body>
+
+</html>

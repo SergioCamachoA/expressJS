@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSR EJS</title>
+</head>
+
+</html>
+
+<body>
+
+
+  <%= JSON.stringify(tasks) %>
+  <div class="tasks-user-container">
+
+    <% tasks.forEach(task => { %>
+
+    <h4><%= task.name %></h4>
+    <h4><%= task.description %></h4>
+    <h4><%= task.done %></h4>
+    <h4><%= task.deliverydate %></h4>
+
+    <% }) %>
+  </div>
+</body>
+
+</html>

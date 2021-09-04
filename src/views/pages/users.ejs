@@ -1,5 +1,20 @@
-<% include ("../partials/head.ejs") %> 
-  <body>
-    <%= JSON.stringify(users) %>
-  </body>
+<%- include ("../partials/head.ejs") %>
+
+
+<body>
+  <%= //JSON.stringify(users) %>
+
+  <div class="users">
+
+    <% users.forEach(user => { %>
+    <div class="user-container">
+      <h1>name: <%= user.firstname%></h1>
+      <h1>last name: <%= user.lastname %> </h1>
+      <h1> id: <%= user.id %> </h1>
+      <a href=<%= `tasks/user/${user.id}` %> target="_blank">tasks</a>
+    </div>
+    <% }) %>
+  </div>
+</body>
+
 </html>

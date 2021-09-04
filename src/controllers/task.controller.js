@@ -2,7 +2,9 @@ import { Task } from "../models/Task"
 
 export const getTasks = async (_, res) => {
   try {
-    const allTasks = await Task.findAll({})
+    const allTasks = await Task.findAll({
+      order: [["userid", "ASC"]],
+    })
     // console.log(allTasks)
     res.status(200).json(allTasks)
   } catch (error) {

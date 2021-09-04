@@ -5,7 +5,7 @@ import {
   getTasks,
   postTask,
   putTask,
-} from "../controllers/task"
+} from "../controllers/task.controller"
 
 const router = Router()
 

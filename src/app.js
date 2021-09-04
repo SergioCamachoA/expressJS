@@ -1,12 +1,15 @@
-import path from "path"
-import userRoutesViews from "./routes/user.views"
-
 import express from "express"
 import morgan from "morgan"
-import userRoutes from "./routes/user"
-import taskRoutes from "./routes/task"
+import path from "path"
 
 import db from "./dadabase/postgres.db"
+
+import userRoutesViews from "./routes/views/user"
+import taskRoutesViews from "./routes/views/tasks"
+import testRoutesViews from "./routes/views/test"
+
+import userRoutes from "./routes/user"
+import taskRoutes from "./routes/task"
 
 db.authenticate()
   .then(() => console.log("Connection has been established successfully."))
@@ -15,7 +18,7 @@ db.authenticate()
   })
 
 const app = express()
-
+//static files
 app.use(express.static("public"))
 
 //config view engine
@@ -31,5 +34,7 @@ app.use("/api/tasks", taskRoutes)
 app.use("/api/users", userRoutes)
 
 app.use("/users", userRoutesViews)
+app.use("/tasks", taskRoutesViews)
+app.use("/test/:id", testRoutesViews)
 
 export default app

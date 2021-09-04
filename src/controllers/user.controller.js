@@ -4,12 +4,11 @@ import { User } from "../models/User"
 export const getUsers = async (_, res) => {
   try {
     const allUsers = await User.findAll({
-      attributes: ["id", "name", "lastname"],
+      attributes: ["id", "firstname", "lastname"],
     })
     // res.set("Access-Control-Allow-Origin", "*")
 
-    return allUsers
-    // res.status(200).json(allUsers)
+    res.status(200).json(allUsers)
   } catch (error) {
     console.log(error)
     res.status(500).json({ response: "internal server error" })
@@ -32,17 +31,17 @@ export const getOneUser = async (req, res) => {
 }
 
 export const postUser = async (req, res) => {
-  const { name, lastname, email, password } = req.body
+  const { firstname, lastname, email, password } = req.body
   try {
     const newUser = await User.create(
       {
-        name,
+        firstname,
         lastname,
         email,
         password,
       },
       {
-        fields: ["name", "lastname", "email", "password"],
+        fields: ["firstname", "lastname", "email", "password"],
       }
     )
     res.status(200).json(newUser)

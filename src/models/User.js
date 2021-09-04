@@ -10,7 +10,7 @@ export const User = db.define(
       allowNull: false,
       primaryKey: true,
     },
-    name: {
+    firstname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
