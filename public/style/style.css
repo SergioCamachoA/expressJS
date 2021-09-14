@@ -97,6 +97,89 @@ a:hover {
 }
 
 .tasks-user-container {
-  font-size: 4rem;
+  width: 100vw;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tasks-user-container h1 {
+  font-weight: bolder;
+  font-size: 8rem;
+  margin-bottom: 3rem;
+}
+
+.each-task-user, .left {
+  width: 40vw;
+  border: 3px solid #202020;
+  border-radius: 2rem 0 0 2rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  -webkit-transform: translateX(30vw);
+          transform: translateX(30vw);
+  -webkit-transition: 800ms;
+  transition: 800ms;
+}
+
+.each-task-user h4, .left h4 {
+  font-size: 1.4rem;
+  font-weight: bolder;
+}
+
+.each-task-user:hover, .left:hover {
+  -webkit-transform: translateX(20vw);
+          transform: translateX(20vw);
+  border-radius: 2rem;
+  border: 3px solid #c4c4c4;
+}
+
+.left {
+  border-radius: 0 2rem 2rem 0;
+  -webkit-transform: translateX(-30vw);
+          transform: translateX(-30vw);
+}
+
+.left:hover {
+  -webkit-transform: translateX(-20vw);
+          transform: translateX(-20vw);
+}
+
+.done-date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.done-date .done {
+  color: #70b10f;
+  font-weight: bolder;
+}
+
+.done-date .notdone {
+  color: #b40606;
+  font-weight: bolder;
+}
+
+.done-date .date {
+  text-align: right;
+  font-weight: bolder;
 }
 /*# sourceMappingURL=style.css.map */

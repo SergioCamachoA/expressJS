@@ -75,5 +75,67 @@ a {
 }
 
 .tasks-user-container {
-  font-size: 4rem;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font: {
+      weight: bolder;
+      size: 8rem;
+    }
+    margin-bottom: 3rem;
+  }
+}
+.each-task-user {
+  width: 40vw;
+  // border: 3px solid rgb(196, 196, 196);
+  border: 3px solid rgb(32, 32, 32);
+  border-radius: 2rem 0 0 2rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  transform: translateX(30vw);
+  transition: 800ms;
+  h4 {
+    font: {
+      size: 1.4rem;
+      weight: bolder;
+    }
+  }
+  &:hover {
+    transform: translateX(20vw);
+    border-radius: 2rem;
+    border: 3px solid rgb(196, 196, 196);
+  }
+}
+
+.left {
+  @extend .each-task-user;
+  // border-right: 3px solid rgb(196, 196, 196);
+  // border-left: 3px solid rgb(32, 32, 32);
+  border-radius: 0 2rem 2rem 0;
+  transform: translateX(-30vw);
+
+  &:hover {
+    transform: translateX(-20vw);
+  }
+}
+.done-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .done {
+    color: rgb(112, 177, 15);
+    font-weight: bolder;
+  }
+  .notdone {
+    color: rgb(180, 6, 6);
+    font-weight: bolder;
+  }
+  .date {
+    text-align: right;
+    font-weight: bolder;
+  }
 }

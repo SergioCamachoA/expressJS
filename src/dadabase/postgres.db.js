@@ -1,6 +1,8 @@
 import Sequelize from "sequelize"
 
-const db = new Sequelize("postgres", "postgres", "yQuX^96Dsa#!", {
+import config from "../config/index"
+
+const db = new Sequelize(config.DB_DATABASE, config.DB_USER, config.DB_PASS, {
   host: "localhost",
   port: 5555,
   dialect: "postgres",

@@ -1,29 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <link rel="stylesheet" href="/style/style.css">
-
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SSR EJS</title>
-</head>
-
-</html>
+<%- include ('../partials/head.ejs') %>
 
 <body>
 
 
-  <%= JSON.stringify(tasks) %>
+  <%= //JSON.stringify(tasks) %>
   <div class="tasks-user-container">
+    <h1>THEM TASKS</h1>
+    <% tasks.forEach((task, index) => { %>
+    <div class=<%= index%2 === 0 ? "each-task-user" : "left"
+    %>>
 
-    <% tasks.forEach(task => { %>
-
-    <h4><%= task.name %></h4>
-    <h4><%= task.description %></h4>
-    <h4><%= task.done %></h4>
-    <h4><%= task.deliverydate %></h4>
+      <h4><%= task.name %></h4>
+      <!-- <p><%= task.description %></p> -->
+      <div class="done-date">
+        <p class=<%= task.done ? 'done' : 'notdone' %>><%= task.done ? 'done' : 'not done' %></p>
+        <p class='date'>due date: <%= task.deliverydate %></p>
+      </div>
+    </div>
 
     <% }) %>
   </div>

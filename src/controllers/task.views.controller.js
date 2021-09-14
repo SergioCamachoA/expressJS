@@ -30,3 +30,21 @@ export const getUserTasks = async (req, res) => {
     res.status(500).json({ response: "internal server error, my amigo" })
   }
 }
+
+export const putUserTasks = async (req, res) => {
+  // const
+  const newValue = req.body.newValue
+  try {
+    const tasks = await Task.update(
+      {
+        done: newValue,
+      },
+      {
+        where: { done },
+      }
+    )
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ response: "internal server error, my amigo" })
+  }
+}
