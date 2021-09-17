@@ -6,7 +6,7 @@ import db from "./dadabase/postgres.db"
 
 import userRoutesViews from "./routes/views/user"
 import taskRoutesViews from "./routes/views/tasks"
-import testRoutesViews from "./routes/views/test"
+import homeRoutesViews from "./routes/views/home"
 
 import userRoutes from "./routes/user"
 import taskRoutes from "./routes/task"
@@ -33,8 +33,10 @@ app.use(morgan("dev"))
 app.use("/api/tasks", taskRoutes)
 app.use("/api/users", userRoutes)
 
+//views
 app.use("/users", userRoutesViews)
 app.use("/tasks", taskRoutesViews)
-app.use("/test/:id", testRoutesViews)
+
+app.use("/", homeRoutesViews)
 
 export default app

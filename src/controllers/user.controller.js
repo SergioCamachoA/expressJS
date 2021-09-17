@@ -32,22 +32,28 @@ export const getOneUser = async (req, res) => {
 
 export const postUser = async (req, res) => {
   const { firstname, lastname, email, password } = req.body
-  try {
-    const newUser = await User.create(
-      {
-        firstname,
-        lastname,
-        email,
-        password,
-      },
-      {
-        fields: ["firstname", "lastname", "email", "password"],
-      }
-    )
-    res.status(200).json(newUser)
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ response: "internal server error" })
+
+  const duplicated = await User.findOne({ where: { email } })
+  if (!duplicated) {
+    try {
+      const newUser = await User.create(
+        {
+          firstname,
+          lastname,
+          email,
+          password,
+        },
+        {
+          fields: ["firstname", "lastname", "email", "password"],
+        }
+      )
+      res.status(200).json(newUser)
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ response: "internal server error" })
+    }
+  } else {
+    res.status(500).json({ response: "this email address already exists" })
   }
 }
 

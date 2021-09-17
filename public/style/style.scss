@@ -139,3 +139,24 @@ a {
     font-weight: bolder;
   }
 }
+
+.home {
+  background-color: greenyellow;
+  h1 {
+    font-size: 30rem;
+    // animation: home-h1 5s 3 500ms;
+  }
+}
+
+@keyframes home-h1 {
+  0% {
+  }
+  50% {
+    transform: translateX(-100%);
+    font-size: 30rem;
+  }
+  100% {
+    transform: translateY(-30vh);
+    font-size: 3rem;
+  }
+}

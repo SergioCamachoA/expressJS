@@ -13,4 +13,5 @@ const config = {
   },
 }
 
-module.exports = config[process.env.switch]
+// module.exports = config[process.env.switch]
+export default config[process.env.SWITCH]

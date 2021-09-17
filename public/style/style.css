@@ -182,4 +182,42 @@ a:hover {
   text-align: right;
   font-weight: bolder;
 }
+
+.home {
+  background-color: greenyellow;
+}
+
+.home h1 {
+  font-size: 30rem;
+}
+
+@-webkit-keyframes home-h1 {
+  0% {
+  }
+  50% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    font-size: 30rem;
+  }
+  100% {
+    -webkit-transform: translateY(-30vh);
+            transform: translateY(-30vh);
+    font-size: 3rem;
+  }
+}
+
+@keyframes home-h1 {
+  0% {
+  }
+  50% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    font-size: 30rem;
+  }
+  100% {
+    -webkit-transform: translateY(-30vh);
+            transform: translateY(-30vh);
+    font-size: 3rem;
+  }
+}
 /*# sourceMappingURL=style.css.map */
