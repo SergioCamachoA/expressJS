@@ -7,9 +7,9 @@ import {
 
 const router = Router()
 
-router.route("/").get(getTasks)
+router.route("/").get(getTasks).put(putUserTasks)
 // .post(postUser).put(putUser)
-router.route("/user/:userid").get(getUserTasks).put(putUserTasks)
+router.route("/user/:userid").get(getUserTasks)
 // router.route("/user/:userid").get(getUserTasks)
 // .delete(deleteUser)
 

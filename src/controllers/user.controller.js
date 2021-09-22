@@ -15,23 +15,30 @@ export const getUsers = async (_, res) => {
   }
 }
 
-export const getOneUser = async (req, res) => {
-  const { id } = req.params
+export const getOneUser = async (id) => {
+  // const { id } = req.params
   try {
-    const oneUser = await User.findOne({ where: { id } })
+    const oneUser = await User.findOne({
+      // attributes: ["id", "firstname", "email"],
+
+      where: { id },
+    })
 
     if (oneUser === null) {
-      return res.status(400).json({ response: "user not found" })
+      return false
+      // return res.status(400).json({ response: "user not found" })
     }
-    res.status(200).json(oneUser)
+    // res.status(200).json(oneUser)
+    return oneUser
   } catch (error) {
     console.log(error)
-    res.status(500).json({ response: "internal server error" })
+    return error
+    // res.status(500).json({ response: "internal server error" })
   }
 }
 
-export const postUser = async (req, res) => {
-  const { firstname, lastname, email, password } = req.body
+export const postUser = async (req) => {
+  const { firstname, lastname, email, password } = req
 
   const duplicated = await User.findOne({ where: { email } })
   if (!duplicated) {
@@ -47,13 +54,18 @@ export const postUser = async (req, res) => {
           fields: ["firstname", "lastname", "email", "password"],
         }
       )
-      res.status(200).json(newUser)
+      // res.status(200).json(newUser)
+      return newUser
     } catch (error) {
       console.log(error)
-      res.status(500).json({ response: "internal server error" })
+      // res.status(500).json({ response: "internal server error" })
+      return error
     }
   } else {
-    res.status(500).json({ response: "this email address already exists" })
+    return "this email address already exists"
+    // return res
+    // .status(500)
+    // .json({ response: "this email address already exists" })
   }
 }
 
@@ -66,10 +78,16 @@ export const putUser = async (req, res) => {
       { [type]: newValue },
       {
         where: { id },
+        returning: true,
+        plain: true,
       }
     )
+    const noPassword = Object.entries(modifiedResponse[1].dataValues).filter(
+      ([key, _]) => key !== "password"
+    )
     res.status(200).json({
-      how_many_updated_users: modifiedResponse,
+      response: "user has been modified",
+      user: Object.fromEntries(noPassword),
     })
   } catch (error) {
     console.log(error)
@@ -80,8 +98,16 @@ export const putUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
   const { id } = req.params
   try {
-    const deleteResponse = await User.destroy({ where: { id } })
-    res.status(200).json({ how_many_deleted_users: deleteResponse })
+    // const deleteResponse = await
+    User.destroy({
+      where: { id },
+      // returning: true,
+      // plain: true,
+    })
+    res.status(200).json({
+      response: "user has been deleted",
+      // user: deleteResponse,
+    })
   } catch (error) {
     console.log(error)
     res.status(500).json({ response: "internal server error" })

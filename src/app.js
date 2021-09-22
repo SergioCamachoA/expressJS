@@ -4,12 +4,13 @@ import path from "path"
 
 import db from "./dadabase/postgres.db"
 
-import userRoutesViews from "./routes/views/user"
+import userRoutesViews from "./routes/views/users"
 import taskRoutesViews from "./routes/views/tasks"
 import homeRoutesViews from "./routes/views/home"
 
 import userRoutes from "./routes/user"
 import taskRoutes from "./routes/task"
+import authRoutes from "./routes/auth.routes"
 
 db.authenticate()
   .then(() => console.log("Connection has been established successfully."))
@@ -32,6 +33,7 @@ app.use(morgan("dev"))
 
 app.use("/api/tasks", taskRoutes)
 app.use("/api/users", userRoutes)
+app.use("/api", authRoutes)
 
 //views
 app.use("/users", userRoutesViews)

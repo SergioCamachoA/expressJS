@@ -45,3 +45,6 @@ export const encryptPasswordUserUpdate = (req, _, next) => {
     bcrypt.hashSync(req.body.newValue, bcrypt.genSaltSync(10))
   return next()
 }
+
+export const validateEncryptedPassword = (password, encryptedPassword) =>
+  bcrypt.compareSync(password, encryptedPassword)

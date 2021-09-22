@@ -2,6 +2,8 @@
 
 
 <body>
+
+  <% users = users.sort((a,b)=>a.id-b.id) %>
   <%= //JSON.stringify(users) %>
 
   <div class="users">
@@ -11,7 +13,8 @@
       <h1>name: <%= user.firstname%></h1>
       <h1>last name: <%= user.lastname %> </h1>
       <h1> id: <%= user.id %> </h1>
-      <a href=<%=`/tasks/user/${user.id}` %> target="_blank">tasks</a>
+
+      <a href=<%=`/users/${user.id}`%> target="_blank" rel="noopener noreferrer">tasks</a>
     </div>
     <% }) %>
   </div>
