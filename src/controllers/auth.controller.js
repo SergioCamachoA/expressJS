@@ -1,5 +1,5 @@
-import { getOneUser, postUser } from "./user.controller"
-import { createToken, validateToken } from "../lib/auth"
+import { getOneUser, getOneUserByEmail, postUser } from "./user.controller"
+import { createToken, verifyToken } from "../lib/auth"
 import { validateEncryptedPassword } from "../middlewares/api.user.middlewares"
 
 export const signup = async (req, res) => {
@@ -17,17 +17,22 @@ export const signup = async (req, res) => {
 }
 
 export const login = async (req, res) => {
-  const { authorization } = req.headers
-  const token = authorization !== undefined && authorization.split(" ")[1]
-  const tokenDecoded = validateToken(token)
+  // const { authorization } = req.headers
+  // const token = authorization !== undefined && authorization.split(" ")[1]
+  // const tokenDecoded = validateToken(token)
 
-  if (!tokenDecoded) {
-    return res.status(400).json({ msg: "invalid token" })
-  }
+  // if (!tokenDecoded) {
+  //   return res.status(400).json({ msg: "invalid token" })
+  // }
 
-  const { payload } = tokenDecoded
+  // const { payload } = tokenDecoded
 
-  const validUser = await getOneUser(payload.id)
+  //1st
+  //2nd
+  //3rd
+  //4th
+  const validUser = await getOneUserByEmail(req.body.email)
+  // const validUser = await getOneUser(payload.id)
 
   if (req.body.email !== validUser.dataValues.email)
     return res.status(400).json({ msg: "invalid email address" })
@@ -38,5 +43,8 @@ export const login = async (req, res) => {
   )
 
   if (!validPassword) return res.status(400).json({ msg: "invalid password" })
-  res.status(200).json({ msg: "valid login" })
+  //3rd
+  const token = await createToken(validUser.id)
+  //4th
+  res.status(200).json({ msg: "valid login", token })
 }

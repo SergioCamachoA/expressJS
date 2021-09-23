@@ -37,6 +37,27 @@ export const getOneUser = async (id) => {
   }
 }
 
+export const getOneUserByEmail = async (email) => {
+  try {
+    const oneUser = await User.findOne({
+      // attributes: ["id", "firstname", "email"],
+
+      where: { email },
+    })
+
+    if (oneUser === null) {
+      return false
+      // return res.status(400).json({ response: "user not found" })
+    }
+    // res.status(200).json(oneUser)
+    return oneUser
+  } catch (error) {
+    console.log(error)
+    return error
+    // res.status(500).json({ response: "internal server error" })
+  }
+}
+
 export const postUser = async (req) => {
   const { firstname, lastname, email, password } = req
 

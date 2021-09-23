@@ -2,10 +2,11 @@ import { Router } from "express"
 import {
   getUsers,
   postUser,
-  getOneUser,
+  // getOneUser,
   putUser,
   deleteUser,
 } from "../controllers/user.controller"
+import { verifyToken } from "../lib/auth"
 import {
   encryptPasswordUser,
   encryptPasswordUserUpdate,
@@ -16,9 +17,10 @@ const router = Router()
 
 router
   .route("/")
-  .get(getUsers)
+  .get(verifyToken, getUsers)
   .post(postValidation, encryptPasswordUser, postUser)
   .put(encryptPasswordUserUpdate, putUser)
-router.route("/:id").get(getOneUser).delete(deleteUser)
+router.route("/:id").delete(verifyToken, deleteUser)
+// .get(getOneUser)
 
 export default router
